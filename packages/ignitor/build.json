@@ -5,6 +5,7 @@
     "rax-simulator-renderer": "../rax-simulator-renderer/src/index.ts"
   },
   "vendor": false,
+  "browserslist": "chrome >= 45",
   "devServer": {
     "liveReload": false,
     "hot": false
