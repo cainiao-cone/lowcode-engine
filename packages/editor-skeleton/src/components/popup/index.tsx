@@ -125,7 +125,10 @@ export class PopupContent extends PureComponent<{ safeId?: string; popupContaine
     this.dispose();
   }
 
-  onClose = () => {
+  onClose = (reason: string, e) => {
+    if (reason === 'keyboard' && e.keyCode === 27) {
+      e.stopPropagation();
+    }
     this.setState({
       visible: false,
     });
@@ -166,6 +169,12 @@ export class PopupContent extends PureComponent<{ safeId?: string; popupContaine
         id={this.props.safeId}
         safeNode={id}
         closeable
+        useCapture={false}
+        addKeyDownEventOnWrapper
+        autoFocus
+        closeByOutSideClickEvents={[
+          { eventName: 'mousedown', useCapture: false },
+        ]}
         container={this.props.popupContainer}
       >
         <div className="lc-ballon-title">{title}</div>
